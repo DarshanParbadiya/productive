@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
-  const body: unknown = await request.json();
+  const body : unknown = await request.json();
   const result = signUpSchema.safeParse(body);
 
   if (!result.success) {
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     });
 
     if (existedUsername)
-      return NextResponse.json("Username is already taken", { status: 202 });
+      return NextResponse.json("ERRORS.TAKEN_USERNAME", { status: 202 });
 
     const existedUser = await db.user.findUnique({
       where: {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     });
 
     if (existedUser)
-      return NextResponse.json("Email is already taken", { status: 201 });
+      return NextResponse.json("ERRORS.TAKEN_EMAIL", { status: 201 });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -44,6 +44,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newUser, { status: 200 });
   } catch (err) {
-    return NextResponse.json("Something went wrong", { status: 204 });
+    return NextResponse.json("ERRORS.DEFAULT", { status: 204 });
   }
 }

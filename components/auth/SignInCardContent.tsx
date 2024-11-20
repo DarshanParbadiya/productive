@@ -7,6 +7,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,13 +80,13 @@ export const SignInCardContent = () => {
     <CardContent>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
-          <ProviderSignInBtns signInCard onLoading={setIsLoading} />
           <div className="space-y-1.5">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>{t("EMAIL")}</FormLabel>
                   <FormControl>
                     <Input placeholder={t("EMAIL")} {...field} />
                   </FormControl>
@@ -98,6 +99,7 @@ export const SignInCardContent = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>{t("PASSWORD")}</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -113,7 +115,7 @@ export const SignInCardContent = () => {
           <div className="space-y-2">
             <Button
               disabled={isLoading}
-              className="w-full font-bold text-white"
+              className="w-full font-bold text-white mb-3"
               type="submit"
             >
               {isLoading ? (
@@ -122,6 +124,9 @@ export const SignInCardContent = () => {
                 t("SIGN_IN.SUBMIT_BTN")
               )}
             </Button>
+            <div className="border-t block pb-3"></div>
+            <ProviderSignInBtns signInCard onLoading={setIsLoading} />
+              <p className="text-sm text-muted-foreground">{t("SIGN_IN.FORGOT_PASSWORD")}</p>
           </div>
         </form>
       </Form>
