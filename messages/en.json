@@ -55,7 +55,8 @@
   },
   "CHANGE_PROFILE_IMAGE": {
     "TITLE": "Send a photo!",
-    "BUTTON": "Choose a photo"
+    "BUTTON": "Choose a photo",
+    "HOVER" : "Upload"
   },
   "ONBOARDING_FORM": {
     "FIRST_STEP": {
@@ -131,6 +132,7 @@
       "WORKSPACE_ICON_ADDED": "Failed to add workspace icon. Please try again",
       "NO_USER_API": "User not Found",
       "UNAUTHORIZED": "Unauthorized. Please sign in!",
+      "CREDENTIALS" : "Invalid OAuth environment variables",
       "TOO_MANY_WORKSPACES": "The limit on the number of workspaces that can be created has been reached"
     },
     "SUCCESS": {

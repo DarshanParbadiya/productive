@@ -1,7 +1,5 @@
 "use client";
-
-// import { usePathname, useRouter } from "next-intl/client";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter,usePathname } from "@/lib/localeHelper";
 import { useState, useTransition } from "react";
 
 export const useChangeLocale = () => {
@@ -11,7 +9,7 @@ export const useChangeLocale = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const onSelectChange = (nextLocale: "te" | "en") => {
+  const onSelectChange = (nextLocale: "en" | "te") => {
     setIsLoading(true);
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale });

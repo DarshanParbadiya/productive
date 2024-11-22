@@ -7,6 +7,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { signUpSchema, SignUpSchema } from "@/schema/signUpSchema";
@@ -68,6 +69,7 @@ export const SignUpCardContent = () => {
         errMsg = err;
       } else if (err instanceof Error) {
         errMsg = m(err.message);
+        console.log(errMsg)
       }
       toast({
         title: errMsg,
@@ -81,13 +83,13 @@ export const SignUpCardContent = () => {
     <CardContent>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
-          <ProviderSignInBtns disabled={isLoading} onLoading={setIsLoading} />
           <div className="space-y-1.5">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>{t("EMAIL")}</FormLabel>
                   <FormControl>
                     <Input placeholder={t("EMAIL")} {...field} />
                   </FormControl>
@@ -100,6 +102,7 @@ export const SignUpCardContent = () => {
               name="username"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>{t("USERNAME")}</FormLabel>
                   <FormControl>
                     <Input placeholder={t("USERNAME")} {...field} />
                   </FormControl>
@@ -112,6 +115,7 @@ export const SignUpCardContent = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>{t("PASSWORD")}</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -127,7 +131,7 @@ export const SignUpCardContent = () => {
           <div className="space-y-2">
             <Button
               disabled={isLoading}
-              className="w-full font-bold text-white"
+              className="w-full font-bold text-white mb-3"
               type="submit"
             >
               {isLoading ? (
@@ -136,6 +140,8 @@ export const SignUpCardContent = () => {
                 t("SIGN_UP.SUBMIT_BTN")
               )}
             </Button>
+            <div className="border-t block pb-3"></div>
+            <ProviderSignInBtns disabled={isLoading} onLoading={setIsLoading} />
             <p className="text-xs text-center text-muted-foreground">
               {t("SIGN_UP.TERMS.FIRST")}{" "}
               <span className="font-bold">{t("SIGN_UP.TERMS.SECOND")}</span>
